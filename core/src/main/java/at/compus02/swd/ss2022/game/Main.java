@@ -1,7 +1,11 @@
 package at.compus02.swd.ss2022.game;
 
+import at.compus02.swd.ss2022.game.factories.PlayerFactory;
+import at.compus02.swd.ss2022.game.factories.TileFactory;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
+import at.compus02.swd.ss2022.game.gameobjects.Grass;
 import at.compus02.swd.ss2022.game.gameobjects.Sign;
+import at.compus02.swd.ss2022.game.gameobjects.Water;
 import at.compus02.swd.ss2022.game.input.GameInput;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -32,9 +36,22 @@ public class Main extends ApplicationAdapter {
 	public void create() {
 		batch = new SpriteBatch();
 		gameObjects.add(new Sign());
+		FillWithTiles();
+		gameObjects.add(PlayerFactory.getInstance().create(0, 0));
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
 		Gdx.input.setInputProcessor(this.gameInput);
+	}
+
+	public void FillWithTiles()
+	{
+		for (float x = ((viewport.getMinWorldWidth()/2)*-1); x <= viewport.getMaxWorldWidth()/2; x+=32)
+		{
+			for (float y = viewport.getMaxWorldHeight()/2; y >= ((viewport.getMaxWorldHeight()/2)*-1); y-=32)
+			{
+				gameObjects.add(TileFactory.getInstance().create(x, y));
+			}
+		}
 	}
 
 	private void act(float delta) {
