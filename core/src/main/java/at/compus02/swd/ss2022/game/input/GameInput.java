@@ -1,21 +1,33 @@
 package at.compus02.swd.ss2022.game.input;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.Input.Keys;
 
 public class GameInput extends InputAdapter {
 
-    public static ArrayList<keys> pressedKeys = new ArrayList<>();
+    public static MoveUpCommand muc;
+    public static MoveDownCommand mdc;
+    public static MoveLeftCommand mlc;
+    public static MoveRightCommand mrc;
 
     @Override
     public boolean keyDown(int keycode) {
 
-        for (keys allowedKey : keys.values()) {
-            if (allowedKey.getKeycode() == keycode && !pressedKeys.contains(allowedKey)) {
-                pressedKeys.add(allowedKey);
-                System.out.println("Key Down: " + allowedKey);
-            }
+        switch (keycode) {
+            case Keys.UP:
+                muc.execute();
+                break;
+            case Keys.DOWN:
+                mdc.execute();
+                break;
+            case Keys.LEFT:
+                mlc.execute();
+                break;
+            case Keys.RIGHT:
+                mrc.execute();
+                break;
+            default:
+                break;
         }
 
         return true;
@@ -24,32 +36,7 @@ public class GameInput extends InputAdapter {
     @Override
     public boolean keyUp(int keycode) {
 
-        // System.out.println("Key Down: " + keycode);
-
-        for (keys allowedKey : keys.values()) {
-            if (allowedKey.getKeycode() == keycode && pressedKeys.contains(allowedKey)) {
-                pressedKeys.remove(allowedKey);
-                System.out.println("Key Up: " + allowedKey);
-            }
-        }
-
         return true;
     }
 
-    public enum keys {
-        up(19),
-        down(20),
-        left(21),
-        right(22);
-
-        private final int keycode;
-
-        keys(int keycode) {
-            this.keycode = keycode;
-        }
-
-        public int getKeycode() {
-            return keycode;
-        }
-    }
 }

@@ -5,6 +5,10 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import at.compus02.swd.ss2022.game.input.GameInput;
+import at.compus02.swd.ss2022.game.input.MoveDownCommand;
+import at.compus02.swd.ss2022.game.input.MoveLeftCommand;
+import at.compus02.swd.ss2022.game.input.MoveRightCommand;
+import at.compus02.swd.ss2022.game.input.MoveUpCommand;
 
 public class Player implements GameObject {
     private Texture image;
@@ -15,21 +19,17 @@ public class Player implements GameObject {
         sprite = new Sprite(image);
     }
 
+    public Sprite getSprite() {
+        return this.sprite;
+    }
+
     @Override
     public void act(float delta) {
 
-        if (GameInput.pressedKeys.contains(GameInput.keys.up)) {
-            moveUp();
-        }
-        if (GameInput.pressedKeys.contains(GameInput.keys.down)) {
-            moveDown();
-        }
-        if (GameInput.pressedKeys.contains(GameInput.keys.left)) {
-            moveLeft();
-        }
-        if (GameInput.pressedKeys.contains(GameInput.keys.right)) {
-            moveRight();
-        }
+        GameInput.muc = new MoveUpCommand(this);
+        GameInput.mdc = new MoveDownCommand(this);
+        GameInput.mlc = new MoveLeftCommand(this);
+        GameInput.mrc = new MoveRightCommand(this);
     }
 
     @Override
@@ -40,22 +40,6 @@ public class Player implements GameObject {
     @Override
     public void draw(SpriteBatch batch) {
         sprite.draw(batch);
-    }
-
-    public void moveUp() {
-        setPosition(sprite.getX(), sprite.getY() + 1);
-    }
-
-    public void moveDown() {
-        setPosition(sprite.getX(), sprite.getY() - 1);
-    }
-
-    public void moveRight() {
-        setPosition(sprite.getX() + 1, sprite.getY());
-    }
-
-    public void moveLeft() {
-        setPosition(sprite.getX() - 1, sprite.getY());
     }
 
 }

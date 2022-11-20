@@ -14,7 +14,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
-/** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
+/**
+ * {@link com.badlogic.gdx.ApplicationListener} implementation shared by all
+ * platforms.
+ */
 public class Main extends ApplicationAdapter {
 
 	private static final int TILE_WIDTH = 32;
@@ -56,7 +59,7 @@ public class Main extends ApplicationAdapter {
     }
 
 	private void act(float delta) {
-		for(GameObject gameObject : gameObjects) {
+		for (GameObject gameObject : gameObjects) {
 			gameObject.act(delta);
 		}
 	}
@@ -64,7 +67,7 @@ public class Main extends ApplicationAdapter {
 	private void draw() {
 		batch.setProjectionMatrix(viewport.getCamera().combined);
 		batch.begin();
-		for(GameObject gameObject : gameObjects) {
+		for (GameObject gameObject : gameObjects) {
 			gameObject.draw(batch);
 		}
 		font.draw(batch, "Hello Game", -220, -220);
@@ -78,7 +81,7 @@ public class Main extends ApplicationAdapter {
 
 		float delta = Gdx.graphics.getDeltaTime();
 		deltaAccumulator += delta;
-		while(deltaAccumulator > logicFrameTime) {
+		while (deltaAccumulator > logicFrameTime) {
 			deltaAccumulator -= logicFrameTime;
 			act(logicFrameTime);
 		}
@@ -91,7 +94,7 @@ public class Main extends ApplicationAdapter {
 	}
 
 	@Override
-	public void resize(int width, int height){
-		viewport.update(width,height);
+	public void resize(int width, int height) {
+		viewport.update(width, height);
 	}
 }
