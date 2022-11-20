@@ -3,22 +3,21 @@ package at.compus02.swd.ss2022.game;
 import at.compus02.swd.ss2022.game.factories.PlayerFactory;
 import at.compus02.swd.ss2022.game.factories.TileFactory;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
-import at.compus02.swd.ss2022.game.gameobjects.Grass;
 import at.compus02.swd.ss2022.game.gameobjects.Sign;
-import at.compus02.swd.ss2022.game.gameobjects.Water;
 import at.compus02.swd.ss2022.game.input.GameInput;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
-/** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
+/**
+ * {@link com.badlogic.gdx.ApplicationListener} implementation shared by all
+ * platforms.
+ */
 public class Main extends ApplicationAdapter {
 	private SpriteBatch batch;
 
@@ -36,26 +35,23 @@ public class Main extends ApplicationAdapter {
 	public void create() {
 		batch = new SpriteBatch();
 		gameObjects.add(new Sign());
-		FillWithTiles();
+		fillWithTiles();
 		gameObjects.add(PlayerFactory.getInstance().create(0, 0));
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
 		Gdx.input.setInputProcessor(this.gameInput);
 	}
 
-	public void FillWithTiles()
-	{
-		for (float x = ((viewport.getMinWorldWidth()/2)*-1); x <= viewport.getMaxWorldWidth()/2; x+=32)
-		{
-			for (float y = viewport.getMaxWorldHeight()/2; y >= ((viewport.getMaxWorldHeight()/2)*-1); y-=32)
-			{
+	public void fillWithTiles() {
+		for (float x = ((viewport.getMinWorldWidth() / 2) * -1); x <= viewport.getMaxWorldWidth() / 2; x += 32) {
+			for (float y = viewport.getMaxWorldHeight() / 2; y >= ((viewport.getMaxWorldHeight() / 2) * -1); y -= 32) {
 				gameObjects.add(TileFactory.getInstance().create(x, y));
 			}
 		}
 	}
 
 	private void act(float delta) {
-		for(GameObject gameObject : gameObjects) {
+		for (GameObject gameObject : gameObjects) {
 			gameObject.act(delta);
 		}
 	}
@@ -63,7 +59,7 @@ public class Main extends ApplicationAdapter {
 	private void draw() {
 		batch.setProjectionMatrix(viewport.getCamera().combined);
 		batch.begin();
-		for(GameObject gameObject : gameObjects) {
+		for (GameObject gameObject : gameObjects) {
 			gameObject.draw(batch);
 		}
 		font.draw(batch, "Hello Game", -220, -220);
@@ -77,7 +73,7 @@ public class Main extends ApplicationAdapter {
 
 		float delta = Gdx.graphics.getDeltaTime();
 		deltaAccumulator += delta;
-		while(deltaAccumulator > logicFrameTime) {
+		while (deltaAccumulator > logicFrameTime) {
 			deltaAccumulator -= logicFrameTime;
 			act(logicFrameTime);
 		}
@@ -90,7 +86,7 @@ public class Main extends ApplicationAdapter {
 	}
 
 	@Override
-	public void resize(int width, int height){
-		viewport.update(width,height);
+	public void resize(int width, int height) {
+		viewport.update(width, height);
 	}
 }
