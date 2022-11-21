@@ -35,8 +35,8 @@ public class Main extends ApplicationAdapter {
 	@Override
 	public void create() {
 		batch = new SpriteBatch();
-		gameObjects.add(new Sign());
 		FillWithTiles();
+		gameObjects.add(new Sign());
 		gameObjects.add(PlayerFactory.getInstance().create(0, 0));
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
