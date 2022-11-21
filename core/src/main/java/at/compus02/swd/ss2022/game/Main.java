@@ -2,6 +2,7 @@ package at.compus02.swd.ss2022.game;
 
 import at.compus02.swd.ss2022.game.factories.PlayerFactory;
 import at.compus02.swd.ss2022.game.factories.TileFactory;
+import at.compus02.swd.ss2022.game.gameobjects.AssetRepository;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import at.compus02.swd.ss2022.game.gameobjects.Sign;
 import at.compus02.swd.ss2022.game.input.GameInput;
@@ -36,6 +37,7 @@ public class Main extends ApplicationAdapter {
 
 	@Override
 	public void create() {
+		AssetRepository.getInstance().loadAssets();
 		batch = new SpriteBatch();
 		fillWithTiles();
 		gameObjects.add(new Sign());

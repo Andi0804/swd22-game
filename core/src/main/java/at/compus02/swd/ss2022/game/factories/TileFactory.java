@@ -1,7 +1,10 @@
 package at.compus02.swd.ss2022.game.factories;
 
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
+import at.compus02.swd.ss2022.game.gameobjects.Grass;
 import at.compus02.swd.ss2022.game.gameobjects.Tile;
+import at.compus02.swd.ss2022.game.gameobjects.Water;
+
 import java.util.Random;
 
 public class TileFactory implements Factory {
@@ -21,9 +24,9 @@ public class TileFactory implements Factory {
     @Override
     public GameObject create(float x, float y) {
 
-        String[] imgPaths = { "tile_wall.png", "tile_gras.png", "tile_gravel.png", "tile_water.png" };
+        Tile[] tiles = {new Tile(), new Grass(), new Water()};
 
-        Tile tile = new Tile(imgPaths[new Random().nextInt(4)]);
+        Tile tile = tiles[new Random().nextInt(3)];
         tile.setPosition(x, y);
         return tile;
     }

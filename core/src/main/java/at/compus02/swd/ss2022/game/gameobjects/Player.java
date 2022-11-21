@@ -15,7 +15,7 @@ public class Player implements GameObject {
     private Sprite sprite;
 
     public Player() {
-        image = new Texture("character.png");
+        image = AssetRepository.getInstance().getTexture(TextureType.PLAYER);
         sprite = new Sprite(image);
     }
 
