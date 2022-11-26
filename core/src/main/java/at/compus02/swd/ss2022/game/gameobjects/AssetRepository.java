@@ -31,4 +31,8 @@ public class AssetRepository {
     public Texture getTexture(TextureType type) {
         return textures.get(type);
     }
+
+    public void dispose(){
+        textures.clear();
+    }
 }
