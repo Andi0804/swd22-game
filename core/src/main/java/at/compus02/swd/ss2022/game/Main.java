@@ -35,9 +35,12 @@ public class Main extends ApplicationAdapter {
 	private float deltaAccumulator = 0;
 	private BitmapFont font;
 
+	private AssetRepository assetRepository;
+
 	@Override
 	public void create() {
-		AssetRepository.getInstance().loadAssets();
+		assetRepository = AssetRepository.getInstance();
+		assetRepository.loadAssets();
 		batch = new SpriteBatch();
 		fillWithTiles();
 		gameObjects.add(new Sign());
@@ -93,6 +96,7 @@ public class Main extends ApplicationAdapter {
 	@Override
 	public void dispose() {
 		batch.dispose();
+		assetRepository.dispose();
 	}
 
 	@Override
