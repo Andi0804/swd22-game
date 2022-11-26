@@ -5,12 +5,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import at.compus02.swd.ss2022.game.input.GameInput;
-import at.compus02.swd.ss2022.game.input.MoveDownCommand;
-import at.compus02.swd.ss2022.game.input.MoveLeftCommand;
-import at.compus02.swd.ss2022.game.input.MoveRightCommand;
-import at.compus02.swd.ss2022.game.input.MoveUpCommand;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,11 +25,6 @@ public class Player implements GameObject {
 
     @Override
     public void act(float delta) {
-
-        GameInput.muc = new MoveUpCommand(this);
-        GameInput.mdc = new MoveDownCommand(this);
-        GameInput.mlc = new MoveLeftCommand(this);
-        GameInput.mrc = new MoveRightCommand(this);
     }
 
     @Override
