@@ -12,7 +12,6 @@ public class GameInput extends InputAdapter {
 
     @Override
     public boolean keyDown(int keycode) {
-
         switch (keycode) {
             case Keys.UP:
                 muc.execute();
