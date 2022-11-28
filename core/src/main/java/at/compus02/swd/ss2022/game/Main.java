@@ -34,6 +34,15 @@ public class Main extends ApplicationAdapter {
 
 	private AssetRepository assetRepository;
 
+	final float TILE_WIDTH = 32;
+	float maxWorldWidth = viewport.getMaxWorldWidth();
+	float maxWorldHeight = viewport.getMaxWorldHeight();
+	float minWorldWidth = viewport.getMinWorldWidth();
+	float x_from = ((minWorldWidth / 2) * -1);
+	float x_to = maxWorldWidth / 2;
+	float y_from = maxWorldHeight / 2;
+	float y_to = ((maxWorldHeight / 2) * -1);
+
 	@Override
 	public void create() {
 		assetRepository = AssetRepository.getInstance();
@@ -45,12 +54,11 @@ public class Main extends ApplicationAdapter {
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
 		Gdx.input.setInputProcessor(this.gameInput);
-
 	}
 
 	public void fillWithTiles() {
-		for (float x = ((viewport.getMinWorldWidth() / 2) * -1); x <= viewport.getMaxWorldWidth() / 2; x += 32) {
-			for (float y = viewport.getMaxWorldHeight() / 2; y >= ((viewport.getMaxWorldHeight() / 2) * -1); y -= 32) {
+		for (float x = x_from; x <= x_to; x += TILE_WIDTH) {
+			for (float y = y_from; y >= y_to; y -= TILE_WIDTH) {
 				gameObjects.add(TileFactory.getInstance().create(x, y));
 			}
 		}
