@@ -1,6 +1,6 @@
 package at.compus02.swd.ss2022.game.input;
 
-import at.compus02.swd.ss2022.game.observer.PlayerPositionObserver;
+import at.compus02.swd.ss2022.game.observer.PlayerPositionLogObserver;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import at.compus02.swd.ss2022.game.gameobjects.Player;
@@ -12,7 +12,7 @@ public class MoveUpCommand implements Command {
 
     @Override
     public void execute() {
-        PlayerPositionObserver positionObserver = new PlayerPositionObserver();
+        PlayerPositionLogObserver positionObserver = new PlayerPositionLogObserver();
         player.addObserver(positionObserver);
         // positive y-position = up
         player.setPosition(sprite.getX(), sprite.getY() + 10);

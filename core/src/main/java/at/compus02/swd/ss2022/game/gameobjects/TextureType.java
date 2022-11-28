@@ -2,7 +2,7 @@ package at.compus02.swd.ss2022.game.gameobjects;
 
 public enum TextureType {
     BUSH("bush.png"),
-    GRASS("tile_gras.png"),
+    GRASS("tile_grass.png"),
     PLAYER("character.png"),
     SIGN("sign.png"),
     TILE("tile_wall.png"),
