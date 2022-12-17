@@ -12,8 +12,6 @@ public class MoveRightCommand implements Command {
 
     @Override
     public void execute() {
-        PlayerPositionLogObserver positionObserver = new PlayerPositionLogObserver();
-        player.addObserver(positionObserver);
         // positive x-position = right
         player.setPosition(sprite.getX() + 10, sprite.getY());
     }

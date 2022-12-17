@@ -12,8 +12,6 @@ public class MoveDownCommand implements Command {
 
     @Override
     public void execute() {
-        PlayerPositionLogObserver positionLogObserver = new PlayerPositionLogObserver();
-        player.addObserver(positionLogObserver);
         // negative y-position = down
         player.setPosition(sprite.getX(), sprite.getY() - 10);
     }

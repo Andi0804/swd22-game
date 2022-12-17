@@ -11,8 +11,6 @@ public class MoveLeftCommand implements Command {
     private Player player;
     @Override
     public void execute() {
-        PlayerPositionLogObserver positionObserver = new PlayerPositionLogObserver();
-        player.addObserver(positionObserver);
         // negative x-position = left
         player.setPosition(sprite.getX() - 10, sprite.getY());
     }

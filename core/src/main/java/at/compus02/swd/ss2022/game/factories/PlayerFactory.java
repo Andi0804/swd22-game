@@ -1,6 +1,7 @@
 package at.compus02.swd.ss2022.game.factories;
 
 import at.compus02.swd.ss2022.game.gameobjects.Player;
+import at.compus02.swd.ss2022.game.observer.PlayerPositionLogObserver;
 
 public class PlayerFactory implements Factory<Player>{
     private static PlayerFactory playerFactory;
@@ -20,6 +21,7 @@ public class PlayerFactory implements Factory<Player>{
     public Player create(float x, float y) {
         Player player = new Player();
         player.setPosition(x, y);
+        player.addObserver(new PlayerPositionLogObserver());
         return player;
     }
 

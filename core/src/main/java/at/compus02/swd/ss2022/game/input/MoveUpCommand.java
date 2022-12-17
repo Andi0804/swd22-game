@@ -12,8 +12,6 @@ public class MoveUpCommand implements Command {
 
     @Override
     public void execute() {
-        PlayerPositionLogObserver positionObserver = new PlayerPositionLogObserver();
-        player.addObserver(positionObserver);
         // positive y-position = up
         player.setPosition(sprite.getX(), sprite.getY() + 10);
     }
