@@ -1,13 +1,12 @@
 package at.compus02.swd.ss2022.game.factories;
 
-import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import at.compus02.swd.ss2022.game.gameobjects.Grass;
 import at.compus02.swd.ss2022.game.gameobjects.Tile;
 import at.compus02.swd.ss2022.game.gameobjects.Water;
 
 import java.util.Random;
 
-public class TileFactory implements Factory {
+public class TileFactory implements Factory<Tile> {
     private static TileFactory tileFactory;
 
     public static TileFactory getInstance() {
@@ -22,11 +21,11 @@ public class TileFactory implements Factory {
     }
 
     @Override
-    public GameObject create(float x, float y) {
+    public Tile create(float x, float y) {
 
-        Tile[] tiles = {new Tile(), new Grass(), new Water()};
+        Tile[] templateTiles = {new Tile(), new Grass(), new Water()};
 
-        Tile tile = tiles[new Random().nextInt(3)];
+        Tile tile = templateTiles[new Random().nextInt(3)];
         tile.setPosition(x, y);
         return tile;
     }
@@ -37,7 +36,7 @@ public class TileFactory implements Factory {
     }
 
     @Override
-    public GameObject[] GetObjects() {
+    public Tile[] GetObjects() {
         return null;
     }
 }

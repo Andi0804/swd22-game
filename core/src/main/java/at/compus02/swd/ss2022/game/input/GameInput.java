@@ -1,15 +1,15 @@
 package at.compus02.swd.ss2022.game.input;
 
 import at.compus02.swd.ss2022.game.gameobjects.Player;
-import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputAdapter;
 
 public class GameInput extends InputAdapter {
 
-    private static MoveUpCommand muc;
-    private  static MoveDownCommand mdc;
-    private static MoveLeftCommand mlc;
-    private static MoveRightCommand mrc;
+    private MoveUpCommand muc;
+    private MoveDownCommand mdc;
+    private MoveLeftCommand mlc;
+    private MoveRightCommand mrc;
 
     @Override
     public boolean keyDown(int keycode) {
@@ -39,7 +39,7 @@ public class GameInput extends InputAdapter {
         return true;
     }
 
-    public static void initialize(Player player) {
+    public void initialize(Player player) {
         muc = new MoveUpCommand(player);
         mdc = new MoveDownCommand(player);
         mlc = new MoveLeftCommand(player);

@@ -4,6 +4,7 @@ import at.compus02.swd.ss2022.game.factories.PlayerFactory;
 import at.compus02.swd.ss2022.game.factories.TileFactory;
 import at.compus02.swd.ss2022.game.gameobjects.AssetRepository;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
+import at.compus02.swd.ss2022.game.gameobjects.Player;
 import at.compus02.swd.ss2022.game.gameobjects.Sign;
 import at.compus02.swd.ss2022.game.input.GameInput;
 import com.badlogic.gdx.ApplicationAdapter;
@@ -44,7 +45,9 @@ public class Main extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		fillWithTiles();
 		gameObjects.add(new Sign());
-		gameObjects.add(PlayerFactory.getInstance().create(0, 0));
+		Player player = PlayerFactory.getInstance().create(0, 0);
+		gameObjects.add(player);
+		gameInput.initialize(player);
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
 		Gdx.input.setInputProcessor(this.gameInput);
@@ -54,7 +57,7 @@ public class Main extends ApplicationAdapter {
         float x_from = (viewport.getMinWorldWidth() / 2) * -1;
         float x_to = viewport.getMaxWorldWidth() / 2;
         float y_from = viewport.getMaxWorldHeight() / 2;
-        float y_to = (viewport.getMaxWorldHeight() / 2) * -1;
+        float y_to = y_from * -1;
 
         for (float x = x_from; x <= x_to; x += TILE_WIDTH) {
             for (float y = y_from; y >= y_to; y -= TILE_HEIGHT) {
