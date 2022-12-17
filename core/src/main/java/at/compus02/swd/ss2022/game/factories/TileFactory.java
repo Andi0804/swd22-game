@@ -32,6 +32,6 @@ public class TileFactory implements Factory{
 
     @Override
     public GameObject[] GetObjects() {
-        return new GameObject[0];
+        return null;
     }
 }

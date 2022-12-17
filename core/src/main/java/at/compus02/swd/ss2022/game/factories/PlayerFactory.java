@@ -31,6 +31,6 @@ public class PlayerFactory implements Factory{
 
     @Override
     public GameObject[] GetObjects() {
-        return new GameObject[0];
+        return null;
     }
 }
