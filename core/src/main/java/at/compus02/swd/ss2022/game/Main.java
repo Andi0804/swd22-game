@@ -11,6 +11,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
@@ -21,19 +22,15 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
  */
 public class Main extends ApplicationAdapter {
 	private SpriteBatch batch;
-
 	private ExtendViewport viewport = new ExtendViewport(480.0f, 480.0f, 480.0f, 480.0f);
 	private GameInput gameInput = new GameInput();
-
+	private ParticleEffect particleEffect;
 	private Array<GameObject> gameObjects = new Array<>();
-
 	private final float updatesPerSecond = 60;
 	private final float logicFrameTime = 1 / updatesPerSecond;
 	private float deltaAccumulator = 0;
 	private BitmapFont font;
-
 	private AssetRepository assetRepository;
-
 	final float TILE_WIDTH = 32;
 	float maxWorldWidth = viewport.getMaxWorldWidth();
 	float maxWorldHeight = viewport.getMaxWorldHeight();
@@ -53,6 +50,14 @@ public class Main extends ApplicationAdapter {
 		gameObjects.add(PlayerFactory.getInstance().create(0, 0));
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
+
+		//---------------------------------
+		particleEffect = new ParticleEffect();
+		particleEffect.load(Gdx.files.internal("Particles.party"),Gdx.files.internal(""));
+		particleEffect.getEmitters().first().setPosition(x_to,y_from);
+		particleEffect.start();
+		//---------------------------------
+
 		Gdx.input.setInputProcessor(this.gameInput);
 	}
 
@@ -68,6 +73,7 @@ public class Main extends ApplicationAdapter {
 		for (GameObject gameObject : gameObjects) {
 			gameObject.act(delta);
 		}
+		particleEffect.update(delta);
 	}
 
 	private void draw() {
@@ -77,6 +83,17 @@ public class Main extends ApplicationAdapter {
 			gameObject.draw(batch);
 		}
 		font.draw(batch, "Hello Game", -220, -220);
+
+		//---------------------------------
+
+		batch.end();
+		batch.begin();
+		particleEffect.draw(batch);
+
+		if (particleEffect.isComplete())
+			particleEffect.reset();
+		//---------------------------------
+
 		batch.end();
 	}
 
