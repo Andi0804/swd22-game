@@ -33,6 +33,9 @@ public class AssetRepository {
     }
 
     public void dispose(){
+        for (Texture texture : textures.values()) {
+            texture.dispose();
+        }
         textures.clear();
     }
 }
