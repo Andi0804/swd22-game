@@ -6,7 +6,11 @@ public enum TextureType {
     PLAYER("character.png"),
     SIGN("sign.png"),
     TILE("tile_wall.png"),
-    WATER("tile_water.png");
+    WATER("tile_water.png"),
+    LOG("log.png"),
+    BRIDGE("woodBridge.png"),
+    STONE("stone.png"),
+    CASTLE("castle.png");
 
     private final String fileName;
 

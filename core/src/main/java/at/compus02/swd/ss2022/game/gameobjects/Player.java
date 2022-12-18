@@ -11,7 +11,8 @@ import java.util.List;
 public class Player implements GameObject {
     private Texture image;
     private Sprite sprite;
-
+    private float posX;
+    private float posY;
     private List<PositionObserver> observers = new ArrayList<>();
 
     public Player() {
@@ -29,11 +30,20 @@ public class Player implements GameObject {
 
     @Override
     public void setPosition(float x, float y) {
+        posX = x;
+        posY = y;
         sprite.setPosition(x, y);
-
         for (PositionObserver obs : this.observers) {
             obs.update(x,y);
         }
+    }
+
+    public float getPosX() {
+        return posX;
+    }
+
+    public float getPosY() {
+        return posY;
     }
 
     @Override
