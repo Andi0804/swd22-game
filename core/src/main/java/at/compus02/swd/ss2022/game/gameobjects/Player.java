@@ -1,29 +1,61 @@
 package at.compus02.swd.ss2022.game.gameobjects;
 
+import at.compus02.swd.ss2022.game.observer.PositionObserver;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class Player implements GameObject{
+import java.util.ArrayList;
+import java.util.List;
+
+public class Player implements GameObject {
     private Texture image;
     private Sprite sprite;
+    private float posX;
+    private float posY;
+    private List<PositionObserver> observers = new ArrayList<>();
 
-    public Player(){
-        image = new Texture("character.png");
+    public Player() {
+        image = AssetRepository.getInstance().getTexture(TextureType.PLAYER);
         sprite = new Sprite(image);
     }
+
+    public Sprite getSprite() {
+        return this.sprite;
+    }
+
     @Override
     public void act(float delta) {
-
     }
 
     @Override
     public void setPosition(float x, float y) {
+        posX = x;
+        posY = y;
         sprite.setPosition(x, y);
+        for (PositionObserver obs : this.observers) {
+            obs.update(x,y);
+        }
+    }
+
+    public float getPosX() {
+        return posX;
+    }
+
+    public float getPosY() {
+        return posY;
     }
 
     @Override
     public void draw(SpriteBatch batch) {
         sprite.draw(batch);
     }
+
+    public void addObserver(PositionObserver obs) {
+        this.observers.add(obs);
+    }
+    public void removeObserver(PositionObserver obs) {
+        this.observers.remove(obs);
+    }
+
 }
