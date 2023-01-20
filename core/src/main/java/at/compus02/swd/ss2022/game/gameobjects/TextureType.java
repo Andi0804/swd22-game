@@ -10,7 +10,8 @@ public enum TextureType {
     LOG("log.png"),
     BRIDGE("woodBridge.png"),
     STONE("stone.png"),
-    CASTLE("castle.png");
+    CASTLE("castle.png"),
+    ENEMY("enemy_32.png");
 
     private final String fileName;
 

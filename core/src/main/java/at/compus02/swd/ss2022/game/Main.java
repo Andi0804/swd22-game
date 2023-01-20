@@ -2,12 +2,10 @@ package at.compus02.swd.ss2022.game;
 
 import at.compus02.swd.ss2022.game.common.ConfigurationData;
 import at.compus02.swd.ss2022.game.common.PlayerPosition;
+import at.compus02.swd.ss2022.game.factories.EnemyFactory;
 import at.compus02.swd.ss2022.game.factories.PlayerFactory;
 import at.compus02.swd.ss2022.game.factories.TileFactory;
-import at.compus02.swd.ss2022.game.gameobjects.AssetRepository;
-import at.compus02.swd.ss2022.game.gameobjects.GameObject;
-import at.compus02.swd.ss2022.game.gameobjects.Player;
-import at.compus02.swd.ss2022.game.gameobjects.Sign;
+import at.compus02.swd.ss2022.game.gameobjects.*;
 import at.compus02.swd.ss2022.game.input.GameInput;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -18,7 +16,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -49,7 +46,18 @@ public class Main extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		fillWithTiles();
 		fillWithSurfaceObjects();
-		Player player = PlayerFactory.getInstance().create(new ConfigurationData().getPlayerPosition().x, new ConfigurationData().getPlayerPosition().y);
+		Player player = PlayerFactory.getInstance().create(new ConfigurationData().getPlayerPosition().x,
+				new ConfigurationData().getPlayerPosition().y);
+
+		for (int i = 0 ; i < 10 ; i++)
+		{
+			int randX = ThreadLocalRandom.current().nextInt((int)x_from, (int)x_to + 1);
+			int randY = ThreadLocalRandom.current().nextInt((int)y_to, (int)y_from + 1);
+			Enemy enemy = new EnemyFactory().create(new ConfigurationData().getEnemyPosition(randX, randY).x,
+					new ConfigurationData().getEnemyPosition(randX, randY).y);
+			gameObjects.add(enemy);
+		}
+
 		gameObjects.add(player);
 		gameInput.initialize(player);
 		font = new BitmapFont();

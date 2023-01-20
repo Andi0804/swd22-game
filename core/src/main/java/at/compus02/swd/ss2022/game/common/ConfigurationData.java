@@ -28,4 +28,7 @@ public class ConfigurationData {
     public Point getPlayerPosition() {
         return playerPosition;
     }
+    public Point getEnemyPosition(int x, int y) {
+        return new Point(x,y);
+    }
 }
