@@ -3,8 +3,11 @@ package at.compus02.swd.ss2022.game.factories;
 import at.compus02.swd.ss2022.game.gameobjects.Enemy;
 import at.compus02.swd.ss2022.game.gameobjects.Player;
 import at.compus02.swd.ss2022.game.observer.PlayerPositionLogObserver;
+import at.compus02.swd.ss2022.game.observer.PositionObserver;
 
 public class EnemyFactory implements Factory<Enemy>{
+
+    private Player _player;
 
     public EnemyFactory(){
 
@@ -15,6 +18,7 @@ public class EnemyFactory implements Factory<Enemy>{
         Enemy enemy = new Enemy();
         enemy.setPosition(x, y);
         enemy.addObserver(new PlayerPositionLogObserver());
+        enemy.setStrategy(_player);
         return enemy;
     }
 
@@ -26,5 +30,9 @@ public class EnemyFactory implements Factory<Enemy>{
     @Override
     public Enemy[] GetObjects() {
         return null;
+    }
+
+    public void setPlayer(Player player){
+        _player = player;
     }
 }

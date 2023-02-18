@@ -53,7 +53,9 @@ public class Main extends ApplicationAdapter {
 		{
 			int randX = ThreadLocalRandom.current().nextInt((int)x_from, (int)x_to + 1);
 			int randY = ThreadLocalRandom.current().nextInt((int)y_to, (int)y_from + 1);
-			Enemy enemy = new EnemyFactory().create(new ConfigurationData().getEnemyPosition(randX, randY).x,
+			EnemyFactory enemyFactory = new EnemyFactory();
+			enemyFactory.setPlayer(player);
+			Enemy enemy = enemyFactory.create(new ConfigurationData().getEnemyPosition(randX, randY).x,
 					new ConfigurationData().getEnemyPosition(randX, randY).y);
 			gameObjects.add(enemy);
 		}

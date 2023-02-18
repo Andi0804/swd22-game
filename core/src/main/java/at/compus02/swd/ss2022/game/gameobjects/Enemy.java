@@ -1,6 +1,7 @@
 package at.compus02.swd.ss2022.game.gameobjects;
 
 import at.compus02.swd.ss2022.game.observer.PositionObserver;
+import at.compus02.swd.ss2022.game.strategy.AttackStrategy;
 import at.compus02.swd.ss2022.game.strategy.CowardStrategy;
 import at.compus02.swd.ss2022.game.strategy.Strategy;
 import com.badlogic.gdx.graphics.Texture;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Enemy implements GameObject {
     private Texture image;
@@ -16,6 +18,7 @@ public class Enemy implements GameObject {
     private float posX;
     private float posY;
     private List<PositionObserver> observers = new ArrayList<>();
+    Strategy strategy = null;
 
     public Enemy() {
         image = AssetRepository.getInstance().getTexture(TextureType.ENEMY);
@@ -28,8 +31,12 @@ public class Enemy implements GameObject {
 
     @Override
     public void act(float delta) {
-        Strategy strategy = new CowardStrategy(this);
         strategy.execute();
+    }
+
+    public void setStrategy(Player _player){
+        //strategy = new Random().nextBoolean() ? new CowardStrategy(this, _player) : new AttackStrategy(this, _player);
+        strategy = new AttackStrategy(this, _player);
     }
 
     @Override
@@ -37,9 +44,12 @@ public class Enemy implements GameObject {
         posX = x;
         posY = y;
         sprite.setPosition(x, y);
+
+        /*
         for (PositionObserver obs : this.observers) {
-            obs.update(x,y);
+            obs.update(x, y);
         }
+        */
     }
 
     public float getPosX() {
