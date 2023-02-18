@@ -35,8 +35,7 @@ public class Enemy implements GameObject {
     }
 
     public void setStrategy(Player _player){
-        //strategy = new Random().nextBoolean() ? new CowardStrategy(this, _player) : new AttackStrategy(this, _player);
-        strategy = new AttackStrategy(this, _player);
+        strategy = new Random().nextBoolean() ? new CowardStrategy(this, _player) : new AttackStrategy(this, _player);
     }
 
     @Override
