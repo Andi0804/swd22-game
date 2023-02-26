@@ -38,17 +38,19 @@ public class Enemy implements GameObject {
         strategy = new Random().nextBoolean() ? new CowardStrategy(this, _player) : new AttackStrategy(this, _player);
     }
 
+    public  void setStrategy(Strategy strategy){
+        this.strategy = strategy;
+    }
+
     @Override
     public void setPosition(float x, float y) {
         posX = x;
         posY = y;
         sprite.setPosition(x, y);
 
-        /*
         for (PositionObserver obs : this.observers) {
             obs.update(x, y);
         }
-        */
     }
 
     public float getPosX() {
