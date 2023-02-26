@@ -4,18 +4,20 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class Tile implements GameObject{
+public class Tile implements GameObject {
     protected Texture image;
     public Sprite sprite;
 
-    public Tile(){
-        image = new Texture("tile_wall.png");
+    public Tile() {
+        image = AssetRepository.getInstance().getTexture(TextureType.TILE);
         sprite = new Sprite(image);
     }
-    public Tile(String imagePath){
-        image = new Texture(imagePath);
+
+    public Tile(TextureType type) {
+        image = AssetRepository.getInstance().getTexture(type);
         sprite = new Sprite(image);
     }
+
     @Override
     public void act(float delta) {
 

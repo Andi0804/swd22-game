@@ -9,7 +9,7 @@ public class Sign implements GameObject {
     private Sprite sprite;
 
     public Sign() {
-        image = new Texture("sign.png");
+        image = AssetRepository.getInstance().getTexture(TextureType.SIGN);
         sprite = new Sprite(image);
     }
     @Override
